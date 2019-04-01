@@ -7,6 +7,7 @@
   console.log(id)
   
   import(`https://api.observablehq.com/${id}.js`).then( notebook => {
+    console.log(notebook)
     // Load the notebook, observing its cells with a default Inspector
     // that simply renders the value of each cell into the provided DOM node.
     Runtime.load(notebook, Inspector.into(document.body));
