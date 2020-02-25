@@ -12,11 +12,11 @@
     // Load the notebook, observing its cells with a default Inspector
     // that simply renders the value of each cell into the provided DOM node.
     Runtime.load(notebook, Inspector.into(document.body));
+  }).then(() => {
+    if (div_id) {
+      const div = document.querySelector(`#${div_id}`)
+      document.body.innerHTML = ''
+      document.body.appendChild(div)
+    }
   })
-  
-  if (div_id) {
-    const div = document.querySelector(`#${div_id}`)
-    document.body.innerHTML = ''
-    document.body.appendChild(div)
-  }
 </script>
