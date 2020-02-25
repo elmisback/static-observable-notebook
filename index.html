@@ -7,9 +7,13 @@
   const div_id = new URL(window.location.href).searchParams.get('div_id')
   console.log(id, div_id)
   
-  import define from `https://api.observablehq.com/${id}.js?v=3`
-  const runtime = new Runtime()
-  const main = runtime.module(define, Inspector.into(document.body))
+  import(`https://api.observablehq.com/${id}.js`).then( module => {
+    const notebook = module.default
+    // Load the notebook, observing its cells with a default Inspector
+    // that simply renders the value of each cell into the provided DOM node.
+    Runtime.load(notebook, Inspector.into(document.body));
+  })
+  
   const ensure_update = () => {
     const div = document.querySelector(`#${div_id}`)
     if (!div) {
@@ -21,11 +25,4 @@
   }
   if (div_id) ensure_update()
 
-  /*
-  import(`https://api.observablehq.com/${id}.js`).then( module => {
-    const notebook = module.default
-    // Load the notebook, observing its cells with a default Inspector
-    // that simply renders the value of each cell into the provided DOM node.
-    Runtime.load(notebook, Inspector.into(document.body));
-  }).then(() => {*/
 </script>
