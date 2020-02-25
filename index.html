@@ -14,7 +14,9 @@
     Runtime.load(notebook, Inspector.into(document.body));
   }).then(() => {
     if (div_id) {
+      console.log(div_id)
       const div = document.querySelector(`#${div_id}`)
+      console.log(div)
       document.body.innerHTML = ''
       document.body.appendChild(div)
     }
