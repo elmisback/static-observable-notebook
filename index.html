@@ -4,7 +4,8 @@
 
   // Your notebook, compiled as an ES module.
   const id = new URL(window.location.href).searchParams.get('id')
-  console.log(id)
+  const cell = new URL(window.location.href).searchParams.get('cell')
+  console.log(id, cell)
   
   import(`https://api.observablehq.com/${id}.js`).then( module => {
     const notebook = module.default
@@ -12,4 +13,10 @@
     // that simply renders the value of each cell into the provided DOM node.
     Runtime.load(notebook, Inspector.into(document.body));
   })
+  
+  if (cell) {
+    const div = document.querySelector(`#${cell}`)
+    document.body.innerHTML = ''
+    document.body.appendChild(div)
+  }
 </script>
