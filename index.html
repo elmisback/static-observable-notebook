@@ -4,8 +4,8 @@
 
   // Your notebook, compiled as an ES module.
   const id = new URL(window.location.href).searchParams.get('id')
-  const cell = new URL(window.location.href).searchParams.get('cell')
-  console.log(id, cell)
+  const div_id = new URL(window.location.href).searchParams.get('div_id')
+  console.log(id, div_id)
   
   import(`https://api.observablehq.com/${id}.js`).then( module => {
     const notebook = module.default
@@ -14,8 +14,8 @@
     Runtime.load(notebook, Inspector.into(document.body));
   })
   
-  if (cell) {
-    const div = document.querySelector(`#${cell}`)
+  if (div_id) {
+    const div = document.querySelector(`#${div_id}`)
     document.body.innerHTML = ''
     document.body.appendChild(div)
   }
