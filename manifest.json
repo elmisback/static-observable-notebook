@@ -4,7 +4,7 @@
   "display": "fullscreen",
   "icons": [
     {
-      "src": "fox-icon.png",
+      "src": "https://raw.githubusercontent.com/mdn/pwa-examples/master/a2hs/icon/fox-icon.png",
       "sizes": "192x192",
       "type": "image/png"
     }
